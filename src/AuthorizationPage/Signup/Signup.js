@@ -71,7 +71,7 @@ const Signup = () => {
             .then(result => {
                 const user = result.user;
                 // console.log(user)
-                notify("Your Account Create Successfully")
+                toast.success("Login Successfully")
             })
             .catch(error => console.log(error))
     }
