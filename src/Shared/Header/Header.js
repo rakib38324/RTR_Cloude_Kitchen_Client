@@ -1,12 +1,39 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../AuthProvider/AuthContextProvider';
+import toast from 'react-hot-toast';
 
 const Header = () => {
+
+    const { user,logOut } = useContext(AuthContext)
+
+    const handleLogOut = () =>{
+        logOut()
+        .then(re => {
+            toast.success("Logout Successfully");
+        })
+        .catch()
+    }
 
 
     const menuItems = <>
     
-    <li className='font-semibold'><Link  to='/'>Home</Link></li>
+    <li className='font-semibold'><Link to='/'>Home</Link></li>
+        {
+            user?.uid?
+                <>
+                    <li className='font-semibold'><Link to='/'>service</Link></li>
+                    <li className='font-semibold'>
+                        <button onClick={handleLogOut} className='btn-ghost'>Sign Out</button>
+                    </li>
+                </>
+                :
+                <>
+                <li className='font-semibold'><Link to='/login'>Login</Link></li>
+                <li className='font-semibold'><Link to='/signup'>Sign Up</Link></li>
+                </>
+
+        }
 
     </>
 
@@ -28,9 +55,7 @@ const Header = () => {
                     {menuItems}
                 </ul>
             </div>
-            <div className="navbar-end">
-                <a className="btn  btn-active btn-ghost">All Services</a>
-            </div>
+            
         </div>
     );
 };
