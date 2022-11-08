@@ -16,7 +16,8 @@ const ServiceCard = ({service}) => {
                     </div>
                     <p>{description.slice(0,100).concat("...")}</p>
                     <Link to={`/services/${_id}`}>
-                        <button className="text-2xl text-red-600"><FaArrowCircleRight /></button>
+                        <button className="text-xl text-white bg-red-600 p-2 gap-2 rounded-md flex shadow"> Details <p className='pt-1 text-white'><FaArrowCircleRight /></p>
+                        </button>
                     </Link>
                 </div>
             </div>
