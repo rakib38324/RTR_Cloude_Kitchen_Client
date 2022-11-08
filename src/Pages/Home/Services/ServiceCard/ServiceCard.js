@@ -1,12 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaArrowCircleRight } from 'react-icons/fa';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
 
 const ServiceCard = ({service}) => {
     const { _id, title, price, img,description,ratting } = service;
     return (
         <div className="card card-compact m-5 bg-base-100 shadow-xl">
-            <figure><img src={img} alt="" /></figure>
+            <PhotoProvider>
+                <PhotoView src={img}>
+                <figure><img src={img} alt="" /></figure>
+                </PhotoView>
+            </PhotoProvider>
             <div className="card-body">
                 <h2 className="card-title text-3xl">{title}</h2>
                 <div className="card-actions justify-end">
