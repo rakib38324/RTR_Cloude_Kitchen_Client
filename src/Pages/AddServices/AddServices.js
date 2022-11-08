@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 
 const AddServices = () => {
 
     const [service, setServices] = useState({});
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
+   
 
     const handleAddService = event => {
         event.preventDefault();
@@ -21,6 +28,7 @@ const AddServices = () => {
             if(data.acknowledge){
                 toast.success("Service Add Successfully")
                 event.target.reset();
+                navigate(from, { replace: true });
             }
         })
     }

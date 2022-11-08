@@ -9,7 +9,8 @@ const LogIn = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
-    const { login, signUpWitGoogle,notify } = useContext(AuthContext);
+    
+    const { login, signUpWitGoogle } = useContext(AuthContext);
 
 
     const handleLogIn = (event) =>{
@@ -21,10 +22,10 @@ const LogIn = () => {
         login(email, password)
             .then(result => {
                 const user = result.user;
-               notify("Successfully Login")
+                toast.success("Login Successfully")
                 form.reset();
                 navigate(from, { replace: true });
-                toast.success("Login Successfully")
+                
 
                 // const currentUser = { email: user.email }
 
@@ -49,6 +50,7 @@ const LogIn = () => {
 
                 const currentUser = { email: user.email }
                 // jwtToken(currentUser);
+                navigate(from, { replace: true });
 
             })
             .catch(error => console.log(error))

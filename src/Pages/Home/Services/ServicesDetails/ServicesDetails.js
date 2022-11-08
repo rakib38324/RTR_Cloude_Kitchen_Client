@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-import { FaArrowCircleRight } from 'react-icons/fa';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import { AuthContext } from '../../../../AuthProvider/AuthContextProvider';
 import TotalReview from '../../../TotalReview/TotalReview';
+import noReview from '../noreview.png'
 
 const ServicesDetails = () => {
     const service = useLoaderData();
@@ -65,40 +65,51 @@ const ServicesDetails = () => {
             </div>
 
 
-        
-            <div>
-                <h1 className='text-4xl text-center my-10'> Total Review: {reviews.length}</h1>
+            {
+                reviews?.length !== 0 ?
+                    <>
+                        <div>
+                            <h1 className='text-4xl text-center my-10'> Total Review: {reviews.length}</h1>
 
-                <div>
-                    <div className="overflow-x-auto w-full">
-                        <table className="table w-full">
+                            <div>
+                                <div className="overflow-x-auto w-full">
+                                    <table className="table w-full">
 
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Reviewer Information</th>
-                                    
-                                    <th>Review</th>
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Reviewer Information</th>
 
-                                </tr>
-                            </thead>
-                            <tbody>
+                                                <th>Review</th>
 
-                                {
-                                    reviews?.length && reviews?.map(review => <TotalReview
-                                        key={review._id}
-                                        reviews={review}
-                                    ></TotalReview>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
-                                    )
-                                }
+                                            {
 
-                            </tbody>
+                                                reviews?.length && reviews?.map(review => <TotalReview
+                                                    key={review._id}
+                                                    reviews={review}
+                                                ></TotalReview>
 
-                        </table>
-                    </div>
-                </div>
-            </div>
+                                                )
+                                            }
+
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </>
+                    :
+                    <>
+                        <img className='m-5 border rounded-lg' src={noReview} alt="" />
+                    </>
+            }
+
+
         </div>
     );
 };

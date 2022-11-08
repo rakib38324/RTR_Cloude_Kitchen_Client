@@ -13,8 +13,9 @@ const Signup = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/'
+    
 
-    const { createUser, signUpWitGoogle, notify } = useContext(AuthContext);
+    const { createUser, signUpWitGoogle } = useContext(AuthContext);
 
     const updateProfileInfo = (name, picture) => {
         updateProfile(auth.currentUser, {
@@ -55,11 +56,10 @@ const Signup = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
-                notify("Your Account Create Successfully");
+                toast.success("Registration Successfully")
                 updateProfileInfo(name, picture);
                 form.reset();
                 navigate(from, { replace: true });
-                toast.success("Login Successfully")
             })
             .catch(error => {
                 console.log(error)
@@ -76,6 +76,7 @@ const Signup = () => {
                 const user = result.user;
                 // console.log(user)
                 toast.success("Login Successfully")
+                navigate(from, { replace: true });
             })
             .catch(error => console.log(error))
     }
