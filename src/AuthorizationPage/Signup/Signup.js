@@ -26,6 +26,7 @@ const Signup = () => {
         }).catch((error) => {
             // An error occurred
             // ...
+            toast.error(error)
         });
 
     }
@@ -60,7 +61,10 @@ const Signup = () => {
                 navigate(from, { replace: true });
                 toast.success("Login Successfully")
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                toast.error("Email Already Used")
+            })
     }
 
 
