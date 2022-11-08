@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { FaArrowCircleRight } from 'react-icons/fa';
 
-const ServiceCard = ({service}) => {
+const ServicesDetails = () => {
+    const service = useLoaderData();
     const { _id, title, price, img,description,ratting } = service;
     return (
         <div className="card card-compact m-5 bg-base-100 shadow-xl">
@@ -14,8 +15,8 @@ const ServiceCard = ({service}) => {
                     <div>
                     <p className='text-xl text-red-600 font-semibold'>Rating: {ratting}</p>
                     </div>
-                    <p>{description.slice(0,100).concat("...")}</p>
-                    <Link to={`/services/${_id}`}>
+                    <p>{description}</p>
+                    <Link to={``}>
                         <button className="text-2xl text-red-600"><FaArrowCircleRight /></button>
                     </Link>
                 </div>
@@ -24,4 +25,4 @@ const ServiceCard = ({service}) => {
     );
 };
 
-export default ServiceCard;
+export default ServicesDetails;
