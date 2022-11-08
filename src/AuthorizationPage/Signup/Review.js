@@ -9,6 +9,9 @@ const Review = () => {
     const service = useLoaderData();
     const { _id, title, price, img, description, ratting } = service;
     const { user } = useContext(AuthContext);
+    const time = new Date().toLocaleTimeString();
+    const date = new Date().toLocaleDateString();;
+    // console.log(time)
     
 
     const handlePlaceReview = event => {
@@ -27,10 +30,12 @@ const Review = () => {
             customer: name,
             email,
             review,
-            img
+            img,
+            time,
+            date
         }
 
-        console.log(_id,title,price,name,email,review,img)
+        // console.log(_id,title,price,name,email,review,img)
 
        
         fetch('http://localhost:5000/review', {

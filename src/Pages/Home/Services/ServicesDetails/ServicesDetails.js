@@ -1,14 +1,28 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { FaArrowCircleRight } from 'react-icons/fa';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import { AuthContext } from '../../../../AuthProvider/AuthContextProvider';
+import TotalReview from '../../../TotalReview/TotalReview';
 
 const ServicesDetails = () => {
     const service = useLoaderData();
     const { _id, title, price, img, description, ratting } = service;
     const { user } = useContext(AuthContext);
+
+    const [reviews, setReviews] = useState({})
+
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/review?serviceId=${_id}`)
+            .then(res => res.json())
+            .then(data => setReviews(data));
+    }, [_id])
+
+
+    console.log(reviews)
+
     return (
         <div className="card card-compact m-5 bg-base-100 shadow-xl">
 
@@ -31,7 +45,7 @@ const ServicesDetails = () => {
 
 
                     {
-                        user?.email?
+                        user?.email ?
                             <>
                                 <Link to={`/review/${_id}`}>
                                     <button className="text-xl text-white bg-red-600 p-2 gap-2 rounded-md flex shadow">Add Review<p className='pt-1 text-white'></p>
@@ -47,6 +61,42 @@ const ServicesDetails = () => {
                                 </Link>
                             </>
                     }
+                </div>
+            </div>
+
+
+        
+            <div>
+                <h1 className='text-4xl text-center my-10'> Total Review: {reviews.length}</h1>
+
+                <div>
+                    <div className="overflow-x-auto w-full">
+                        <table className="table w-full">
+
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Reviewer Information</th>
+                                    
+                                    <th>Review</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                {
+                                    reviews?.length && reviews?.map(review => <TotalReview
+                                        key={review._id}
+                                        reviews={review}
+                                    ></TotalReview>
+
+                                    )
+                                }
+
+                            </tbody>
+
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
