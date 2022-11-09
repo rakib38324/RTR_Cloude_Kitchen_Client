@@ -76,11 +76,10 @@ const ServicesDetails = () => {
                                     <table className="table w-full">
 
                                         <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th>Reviewer Information</th>
-
-                                                <th>Review</th>
+                                            <tr className='text-2xl '>
+                                                <th  className='text-xl'>Reviewer Image</th>
+                                                <th  className='text-xl'>Reviewer Information</th>
+                                                <th className='text-xl text-center'>Review</th>
 
                                             </tr>
                                         </thead>

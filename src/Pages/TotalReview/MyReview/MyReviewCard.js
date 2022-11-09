@@ -1,11 +1,16 @@
 import React from 'react';
 
-const MyReviewCard = ({ reviews }) => {
 
-    const { _id, customer, review, img, date, time, costomerImg, serviceName, price } = reviews;
+const MyReviewCard = ({ reviews,handleDelete }) => {
+
+    const { _id, customer, review, img, date, time, serviceName, price } = reviews;
+
+    
 
     return (
         <tr>
+
+            <td><button onClick={()=>handleDelete(_id)}  className='btn btn-ghost'>X</button></td>
 
             <td>
                 <div>
@@ -30,11 +35,10 @@ const MyReviewCard = ({ reviews }) => {
                 </div>
             </td>
 
-            
+            <td>
+                <textarea className="textarea w-full textarea-bordered" defaultValue={review} readOnly></textarea>
+            </td>
 
-
-
-            <td>{review}</td>
             <td>
                 <div className=''>
                     <button>edit</button>
