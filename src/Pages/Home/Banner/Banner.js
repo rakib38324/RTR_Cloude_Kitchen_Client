@@ -19,9 +19,9 @@ const Banner = () => {
                 
             </div>
             <div className="flex justify-center w-full py-2 mb-16 gap-2">
-                <a href="#item1" className="btn btn-xs">1</a>
-                <a href="#item2" className="btn btn-xs">2</a>
-                <a href="#item3" className="btn btn-xs">3</a>
+                <a href="#item1" className="btn btn-sm bg-red-600">1</a>
+                <a href="#item2" className="btn btn-sm bg-red-600">2</a>
+                <a href="#item3" className="btn btn-sm bg-red-600">3</a>
             </div>
         </div>
 
