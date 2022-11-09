@@ -14,6 +14,7 @@ const Signup = () => {
     const location = useLocation();
     const from = location.state?.from?.pathname || '/'
     
+    
 
     const { createUser, signUpWitGoogle } = useContext(AuthContext);
 

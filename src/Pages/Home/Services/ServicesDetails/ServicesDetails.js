@@ -6,12 +6,15 @@ import { AuthContext } from '../../../../AuthProvider/AuthContextProvider';
 import TotalReview from '../../../TotalReview/TotalReview';
 import noReview from '../noreview.png'
 
+
 const ServicesDetails = () => {
     const service = useLoaderData();
     const { _id, title, price, img, description, ratting } = service;
     const { user } = useContext(AuthContext);
 
-    const [reviews, setReviews] = useState({})
+    const [reviews, setReviews] = useState({});
+
+    
 
 
     useEffect(() => {
@@ -55,10 +58,12 @@ const ServicesDetails = () => {
                             </>
                             :
                             <>
-                                <Link to={`/review/${_id}`}>
-                                    <button className="text-xl text-white bg-red-600 p-2 gap-2 rounded-md flex shadow">Login for Add Review<p className='pt-1 text-white'></p>
-                                    </button>
-                                </Link>
+                                
+                                    <Link to={`/review/${_id}`}>
+                                        <button className="text-xl text-white bg-red-600 p-2 gap-2 rounded-md flex shadow">Login for Add Review<p className='pt-1 text-white'></p>
+                                        </button>
+                                    </Link>
+                                
                             </>
                     }
                 </div>
@@ -77,8 +82,8 @@ const ServicesDetails = () => {
 
                                         <thead>
                                             <tr className='text-2xl '>
-                                                <th  className='text-xl'>Reviewer Image</th>
-                                                <th  className='text-xl'>Reviewer Information</th>
+                                                <th className='text-xl'>Reviewer Image</th>
+                                                <th className='text-xl'>Reviewer Information</th>
                                                 <th className='text-xl text-center'>Review</th>
 
                                             </tr>

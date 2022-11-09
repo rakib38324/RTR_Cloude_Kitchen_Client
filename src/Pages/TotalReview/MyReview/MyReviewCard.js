@@ -1,16 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
-const MyReviewCard = ({ reviews,handleDelete }) => {
+const MyReviewCard = ({ reviews, handleDelete }) => {
 
-    const { _id, customer, review, img, date, time, serviceName, price } = reviews;
+    const { _id, customer,serviceId, review, img, date, time, serviceName, price } = reviews;
 
-    
+
 
     return (
         <tr>
 
-            <td><button onClick={()=>handleDelete(_id)}  className='btn btn-ghost'>X</button></td>
+            <td><button onClick={() => handleDelete(_id)} className='btn btn-ghost btn-active'>X</button></td>
 
             <td>
                 <div>
@@ -36,14 +37,18 @@ const MyReviewCard = ({ reviews,handleDelete }) => {
             </td>
 
             <td>
+
                 <textarea className="textarea w-full textarea-bordered" defaultValue={review} readOnly></textarea>
+
             </td>
 
             <td>
-                <div className=''>
-                    <button>edit</button>
 
-                </div>
+            <Link to={`/editreview/${_id}`} >
+                    <button className='btn btn-ghost  btn-active'>Edit</button>
+                </Link>
+
+
             </td>
 
         </tr>

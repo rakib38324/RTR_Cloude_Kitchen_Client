@@ -7,7 +7,9 @@ import AddServices from '../../Pages/AddServices/AddServices';
 import Home from '../../Pages/Home/Home/Home';
 import AllServices from '../../Pages/Home/Services/AllServices/AllServices';
 import ServicesDetails from '../../Pages/Home/Services/ServicesDetails/ServicesDetails';
+import EditReview from '../../Pages/TotalReview/EditReview/EditReview';
 import MyReview from '../../Pages/TotalReview/MyReview/MyReview';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
 
 
 
@@ -40,17 +42,22 @@ const router = createBrowserRouter([
         },
         {
             path: '/addservices',
-            element: <AddServices></AddServices>
+            element: <PrivateRoute><AddServices></AddServices></PrivateRoute>
         },
         {
             path: '/myreview',
-            element: <MyReview></MyReview>
+            element: <PrivateRoute><MyReview></MyReview></PrivateRoute>
         },
         {
             path: '/review/:id',
-            element: <Review></Review>,
+            element: <PrivateRoute><Review></Review></PrivateRoute>,
             loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
-          },
+        },
+        {
+            path: '/editreview/:id',
+            element: <PrivateRoute><EditReview></EditReview></PrivateRoute>,
+            loader: ({params}) => fetch(`http://localhost:5000/review/${params.id}`)
+        },
       ]
     }
   ]);
