@@ -24,10 +24,11 @@ const Header = () => {
     const menuItems = <>
     
     <li className='font-semibold'><Link to='/'>Home</Link></li>
+    <li className='font-semibold'><Link to='/addservices'>Add Service</Link></li>
         {
             user?.uid?
                 <>
-                    <li className='font-semibold'><Link to='/addservices'>Add Service</Link></li>
+                    <li className='font-semibold'><Link to='/myReview'>My Review</Link></li>
                     <li className='font-semibold'>
                         <button onClick={handleLogOut} className='btn-ghost'>Sign Out</button>
                     </li>

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthContextProvider';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import toast from 'react-hot-toast';
@@ -10,17 +10,21 @@ const Review = () => {
     const { _id, title, price, img, description, ratting } = service;
     const { user } = useContext(AuthContext);
     const time = new Date().toLocaleTimeString();
-    const date = new Date().toLocaleDateString();;
+    const date = new Date().toLocaleDateString();
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
     // console.log(time)
-    
+
 
     const handlePlaceReview = event => {
         event.preventDefault();
 
         const form = event.target;
         const name = form.name.value;
-        const email = user?.email ;
-        const img = user?.photoURL;
+        const email = user?.email;
+        const costomerImg = user?.photoURL;
         const review = form.review.value;
 
         const reviews = {
@@ -31,13 +35,14 @@ const Review = () => {
             email,
             review,
             img,
+            costomerImg,
             time,
             date
         }
 
         // console.log(_id,title,price,name,email,review,img)
 
-       
+
         fetch('http://localhost:5000/review', {
             method: 'POST',
             headers: {
@@ -50,6 +55,7 @@ const Review = () => {
                 if (data.acknowledged) {
                     toast.success("Thanks for Your Review")
                     form.reset();
+                    navigate(from, { replace: true });
                 }
             })
             .catch(error => console.log(error))
@@ -76,7 +82,7 @@ const Review = () => {
                             <p className='text-xl text-red-600 font-semibold'>Rating: {ratting}</p>
                         </div>
                         <p>{description}</p>
-                        
+
                     </div>
                 </div>
             </div>
@@ -99,16 +105,16 @@ const Review = () => {
                         <input type="text" name='email' placeholder="email" className="input input-bordered" defaultValue={user?.email} required readOnly />
                     </div>
 
-                    
+
 
                 </div>
                 <div className="form-control">
                     <label className="label">
-                                <span className="label-text">Write Your Review</span>
-                            </label>
-                            
-                            <textarea  name='review' className="textarea textarea-bordered" placeholder="Your Review..."></textarea>
-                    </div>
+                        <span className="label-text">Write Your Review</span>
+                    </label>
+
+                    <textarea name='review' className="textarea textarea-bordered" placeholder="Your Review..."></textarea>
+                </div>
 
                 <input className='btn text-white bg-red-600 m-5' type="submit" value="Submit Your Review" />
             </form>

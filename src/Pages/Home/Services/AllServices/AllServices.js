@@ -29,11 +29,7 @@ const AllServices = () => {
                     ></ServiceCard>) 
                 }
             </div>
-            {/* <div className='text-center mt-10 mb-16'>
-            <Link className='p-3 mt-10 mb-60 font-bold border rounded-md border-orange-600  text-red-500  hover:bg-red-700 hover:text-white' to='/services'>
-            See All Services
-            </Link>
-            </div> */}
+            
         </div>
     );
 };

@@ -56,7 +56,7 @@ const ServicesDetails = () => {
                             :
                             <>
                                 <Link to={`/review/${_id}`}>
-                                    <button className="text-xl text-white bg-red-600 p-2 gap-2 rounded-md flex shadow">Log in Add Review<p className='pt-1 text-white'></p>
+                                    <button className="text-xl text-white bg-red-600 p-2 gap-2 rounded-md flex shadow">Login for Add Review<p className='pt-1 text-white'></p>
                                     </button>
                                 </Link>
                             </>
