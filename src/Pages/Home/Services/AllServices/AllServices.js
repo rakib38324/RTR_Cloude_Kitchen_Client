@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { FaArrowCircleRight } from 'react-icons/fa';
 import ServiceCard from '../ServiceCard/ServiceCard';
+import useTitle from '../../../../Hooks/UseTitle';
 
 const AllServices = () => {
+    useTitle('All Service');
 
     const [services, setServices] = useState([]);
 

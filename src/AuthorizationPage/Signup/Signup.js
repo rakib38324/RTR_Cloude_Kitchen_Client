@@ -5,10 +5,12 @@ import { AuthContext } from '../../AuthProvider/AuthContextProvider';
 import { getAuth, updateProfile } from 'firebase/auth';
 import app from '../../Firebase/Firebase.config';
 import toast from 'react-hot-toast';
+import useTitle from '../../Hooks/UseTitle';
 
 const auth = getAuth(app)
 
 const Signup = () => {
+    useTitle('SignUp');
 
     const navigate = useNavigate();
     const location = useLocation();

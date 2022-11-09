@@ -3,8 +3,10 @@ import { AuthContext } from '../../../AuthProvider/AuthContextProvider';
 import MyReviewCard from './MyReviewCard';
 import toast from 'react-hot-toast';
 import noReview from '../../Home/Services/noreview.png'
+import useTitle from '../../../Hooks/UseTitle';
 
 const MyReview = () => {
+    useTitle('My Review');
 
     const { user } = useContext(AuthContext)
 

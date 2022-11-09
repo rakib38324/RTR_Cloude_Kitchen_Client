@@ -3,12 +3,15 @@ import { FaGoogle } from 'react-icons/fa';
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthContextProvider';
 import toast from 'react-hot-toast';
+import useTitle from '../../Hooks/UseTitle';
 
 const LogIn = () => {
+    useTitle('Login');
 
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
+    
 
     const { login, signUpWitGoogle, user } = useContext(AuthContext);
 

@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../AuthProvider/AuthContextProvider';
 
 const TotalReview = ({ reviews }) => {
+
+    const{loading} = useContext(AuthContext)
+    if (loading) {
+        return (
+            <div >
+                <progress className="progress progress-error w-56 mx-auto" value="0" max="100"></progress>
+                <progress className="progress progress-error w-56 mx-auto" value="10" max="100"></progress>
+                <progress className="progress progress-error w-56 mx-auto" value="40" max="100"></progress>
+                <progress className="progress progress-error w-56 mx-auto" value="70" max="100"></progress>
+                <progress className="progress progress-error w-56 mx-auto" value="100" max="100"></progress>
+            </div>
+        )
+    }
+
     const { _id, customer, review, img, date, time,costomerImg} = reviews;
-    console.log(reviews._id)
+    // console.log(reviews._id)
     return (
 
 

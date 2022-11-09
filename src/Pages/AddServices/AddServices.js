@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useLocation, useNavigate } from 'react-router-dom';
+import useTitle from '../../Hooks/UseTitle';
 
 
 const AddServices = () => {
+    useTitle('Add Service');
 
     const [service, setServices] = useState({});
 

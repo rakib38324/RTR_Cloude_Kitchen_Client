@@ -3,8 +3,10 @@ import { useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthContextProvider';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import toast from 'react-hot-toast';
+import useTitle from '../../../Hooks/UseTitle';
 
 const EditReview = () => {
+    useTitle('Edit Review');
 
     const service = useLoaderData();
     console.log(service)
