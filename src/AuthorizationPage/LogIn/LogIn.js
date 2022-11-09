@@ -9,30 +9,50 @@ const LogIn = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
-    
-    const { login, signUpWitGoogle,user } = useContext(AuthContext);
+
+    const { login, signUpWitGoogle, user } = useContext(AuthContext);
 
 
-    const handleLogIn = (event) =>{
+    const handleLogIn = (event) => {
 
-        
+
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
+
+
+       
+
+
 
         login(email, password)
             .then(result => {
                 const user = result.user;
                 toast.success("Login Successfully")
                 form.reset();
-                navigate(from, { replace: true });
-                
 
-                // const currentUser = { email: user.email }
 
-                //get jwt token
-                // jwtToken(currentUser);
+
+                const currentUser = { email: user.email }
+
+
+
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        // local storage is the easiest but not best option store token
+                        localStorage.setItem('rtr-cloud-kitchen-token', data.token)
+                        navigate(from, { replace: true });
+                    });
+
 
 
 
@@ -43,26 +63,43 @@ const LogIn = () => {
             })
     }
 
-    const handleloginWithGoolge = () => {
+    const handleLoginWithGoogle = () => {
+        console.log('click')
         signUpWitGoogle()
             .then(result => {
                 const user = result.user;
                 // console.log(user.email)
                 toast.success("Login Successfully")
-
                 const currentUser = { email: user.email }
-                // jwtToken(currentUser);
-                navigate(from, { replace: true });
+
+
+
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        // local storage is the easiest but not best option store token
+                        localStorage.setItem('rtr-cloud-kitchen-token', data.token)
+                        navigate(from, { replace: true });
+                    });
+
+
 
             })
             .catch(error => console.log(error))
 
     }
 
-    if(user?.uid){
-        return <Navigate to={from}></Navigate>
-    }
-    
+    // if(user?.uid){
+    //     return <Navigate to={from}></Navigate>
+    // }
+
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row-reverse">
@@ -76,13 +113,13 @@ const LogIn = () => {
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="text" name='email' placeholder="email" className="input input-bordered" required/>
+                            <input type="text" name='email' placeholder="email" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" name='password' placeholder="password" className="input input-bordered" required/>
+                            <input type="password" name='password' placeholder="password" className="input input-bordered" required />
                             <label className="label">
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
@@ -96,12 +133,12 @@ const LogIn = () => {
                         <p className='text-center '>Or Log in with</p>
 
                         <div className="form-control mx-8 mt-6 mb-3">
-                        <button onClick={handleloginWithGoolge} className="text-2xl text-center btn btn-ghost btn-active">
-                        <div className='flex'>
-                                <div className='text-3xl pr-5'><FaGoogle /></div>
-                                <div>Google </div>
-                            </div>
-                        </button>
+                            <button onClick={handleLoginWithGoogle} className="text-2xl text-center btn btn-ghost btn-active">
+                                <div className='flex'>
+                                    <div className='text-3xl pr-5'><FaGoogle /></div>
+                                    <div>Google </div>
+                                </div>
+                            </button>
                         </div>
                         <p className='text-center mb-5'>New to RTR Cloud Kitchen <Link className='text-blue-600 font-bold' to='/signup'>Sign Up</Link></p>
                     </div>

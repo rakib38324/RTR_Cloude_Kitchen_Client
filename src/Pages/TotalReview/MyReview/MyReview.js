@@ -14,7 +14,11 @@ const MyReview = () => {
 
     console.log(email)
     useEffect(() => {
-        fetch(`http://localhost:5000/review?email=${user?.email}`)
+        fetch(`http://localhost:5000/review?email=${user?.email}`,{
+            headers:{
+                authorization: `Bearer ${localStorage.getItem('rtr-cloud-kitchen-token')}`
+            }
+        })
             .then(res => res.json())
             .then(data => setReviews(data));
     }, [user?.email])
