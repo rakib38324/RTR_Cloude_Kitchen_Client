@@ -6,6 +6,7 @@ import { getAuth, updateProfile } from 'firebase/auth';
 import app from '../../Firebase/Firebase.config';
 import toast from 'react-hot-toast';
 import useTitle from '../../Hooks/UseTitle';
+import signIn from '../login.webp'
 
 const auth = getAuth(app)
 
@@ -58,11 +59,30 @@ const Signup = () => {
         createUser(email, password,name, picture)
             .then(result => {
                 const user = result.user;
-                console.log(user)
+                // console.log(user.email)
                 toast.success("Registration Successfully")
                 updateProfileInfo(name, picture);
                 form.reset();
-                navigate(from, { replace: true });
+
+
+                const currentUser = { email: user.email }
+
+
+
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        // local storage is the easiest but not best option store token
+                        localStorage.setItem('rtr-cloud-kitchen-token', data.token)
+                        navigate(from, { replace: true });
+                    });
             })
             .catch(error => {
                 console.log(error)
@@ -77,9 +97,26 @@ const Signup = () => {
         signUpWitGoogle()
             .then(result => {
                 const user = result.user;
-                // console.log(user)
+                // console.log(user.email)
                 toast.success("Login Successfully")
-                navigate(from, { replace: true });
+                const currentUser = { email: user.email }
+
+
+
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        // local storage is the easiest but not best option store token
+                        localStorage.setItem('rtr-cloud-kitchen-token', data.token)
+                        navigate(from, { replace: true });
+                    });
             })
             .catch(error => console.log(error))
     }
@@ -90,7 +127,8 @@ const Signup = () => {
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
                     <h1 className="text-5xl text-center font-bold">Sign Up now!</h1>
-                    <p className="py-6">Please provide you Name, Email and Password for Registration. You also Register with Google.</p>
+                    <p className="text-center mt-5">Please provide you Name, Email and Password for Registration. You also Register with Google.</p>
+                    <div><img className='w-96 mt-10 mx-auto' src={signIn} alt="" /></div>
                 </div>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <form onSubmit={handleRegistratio} className="card-body">
@@ -125,14 +163,14 @@ const Signup = () => {
                             <input type="password" name='confirmPassword' placeholder="confirm password" className="input input-bordered" required />
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn btn-primary">Registration</button>
+                            <button className="btn  bg-red-600">Registration</button>
                         </div>
 
                     </form>
                     <div>
                         <p className='text-center '>Or Registration in with</p>
 
-                        <div className="form-control mx-8 mt-6 mb-3">
+                        <div className="form-control rounded-lg text-white bg-red-600 mx-8 mt-6 mb-3">
                             <button onClick={handleloginWithGoolge} className="text-2xl text-center btn btn-ghost btn-active">
                              <div className='flex'>
                                 <div className='text-3xl pr-5'><FaGoogle /></div>

@@ -4,6 +4,7 @@ import useTitle from '../../../Hooks/UseTitle';
 import Banner from '../Banner/Banner';
 import DiscoverKitchen from '../DiscoverKitchen/DiscoverKitchen';
 import Services from '../Services/Services';
+import VisitingCount from '../VisitingCount/VisitingCount';
 
 const Home = () => {
     useTitle('Home');
@@ -24,6 +25,7 @@ const Home = () => {
             <Banner></Banner>
             <DiscoverKitchen></DiscoverKitchen>
             <Services></Services>
+            <VisitingCount></VisitingCount>
         </div>
     );
 };

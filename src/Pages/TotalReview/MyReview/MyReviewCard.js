@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaTrashAlt,FaEdit } from 'react-icons/fa';
 
 
 const MyReviewCard = ({ reviews, handleDelete }) => {
@@ -11,7 +12,7 @@ const MyReviewCard = ({ reviews, handleDelete }) => {
     return (
         <tr>
 
-            <td><button onClick={() => handleDelete(_id)} className='btn btn-ghost btn-active'>X</button></td>
+            <td><button onClick={() => handleDelete(_id)} className='btn bg-red-400 text-xl btn-active'><FaTrashAlt></FaTrashAlt></button></td>
 
             <td>
                 <div>
@@ -45,7 +46,7 @@ const MyReviewCard = ({ reviews, handleDelete }) => {
             <td>
 
             <Link to={`/editreview/${_id}`} >
-                    <button className='btn btn-ghost  btn-active'>Edit</button>
+                    <button className='btn  bg-green-500 text-xl '><FaEdit></FaEdit></button>
                 </Link>
 
 

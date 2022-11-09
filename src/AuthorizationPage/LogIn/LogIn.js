@@ -4,6 +4,7 @@ import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthContextProvider';
 import toast from 'react-hot-toast';
 import useTitle from '../../Hooks/UseTitle';
+import loginImg from '../login.webp'
 
 const LogIn = () => {
     useTitle('Login');
@@ -11,7 +12,7 @@ const LogIn = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
-    
+
 
     const { login, signUpWitGoogle, user } = useContext(AuthContext);
 
@@ -25,7 +26,7 @@ const LogIn = () => {
         const password = form.password.value;
 
 
-       
+
 
 
 
@@ -67,14 +68,13 @@ const LogIn = () => {
     }
 
     const handleLoginWithGoogle = () => {
-        console.log('click')
+
         signUpWitGoogle()
             .then(result => {
                 const user = result.user;
                 // console.log(user.email)
                 toast.success("Login Successfully")
                 const currentUser = { email: user.email }
-
 
 
                 fetch('http://localhost:5000/jwt', {
@@ -92,23 +92,19 @@ const LogIn = () => {
                         navigate(from, { replace: true });
                     });
 
-
-
             })
             .catch(error => console.log(error))
 
     }
 
-    // if(user?.uid){
-    //     return <Navigate to={from}></Navigate>
-    // }
 
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
                     <h1 className="text-5xl text-center font-bold">Login now!</h1>
-                    <p className="py-6">Please provide you valid email and password for login. You also login with Google.</p>
+                    <p className="text-center my-5">Please provide you valid email and password for login. You also login with Google.</p>
+                    <div><img className='w-96 mt-10 mx-auto' src={loginImg} alt="" /></div>
                 </div>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <form onSubmit={handleLogIn} className="card-body">
@@ -128,17 +124,17 @@ const LogIn = () => {
                             </label>
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn btn-primary">Login</button>
+                            <button className="btn bg-red-600">Login</button>
                         </div>
 
                     </form>
                     <div>
                         <p className='text-center '>Or Log in with</p>
 
-                        <div className="form-control mx-8 mt-6 mb-3">
+                        <div className="form-control rounded-lg text-white bg-red-600 mx-8 mt-6 mb-3">
                             <button onClick={handleLoginWithGoogle} className="text-2xl text-center btn btn-ghost btn-active">
                                 <div className='flex'>
-                                    <div className='text-3xl pr-5'><FaGoogle /></div>
+                                    <div className='text-3xl  pr-5'><FaGoogle /></div>
                                     <div>Google </div>
                                 </div>
                             </button>

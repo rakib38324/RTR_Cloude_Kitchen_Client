@@ -11,6 +11,7 @@ import EditReview from '../../Pages/TotalReview/EditReview/EditReview';
 import MyReview from '../../Pages/TotalReview/MyReview/MyReview';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import page from '../errorPage.jpg'
+import Blogs from '../../Pages/Home/Blogs/Blogs';
 
 
 
@@ -59,6 +60,11 @@ const router = createBrowserRouter([
             element: <PrivateRoute><EditReview></EditReview></PrivateRoute>,
             loader: ({params}) => fetch(`http://localhost:5000/review/${params.id}`)
         },
+        {
+            path: '/blogs',
+            element: <Blogs></Blogs>,
+            
+        }
       ]
       
     },

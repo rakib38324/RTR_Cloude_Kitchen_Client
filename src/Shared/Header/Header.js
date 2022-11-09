@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthContextProvider';
 import toast from 'react-hot-toast';
+import { FaRegUserCircle } from 'react-icons/fa';
 
 const Header = () => {
 
@@ -20,11 +21,12 @@ const Header = () => {
         .catch()
     }
 
-
+   
     const menuItems = <>
     
     <li className='font-semibold'><Link to='/'>Home</Link></li>
     <li className='font-semibold'><Link to='/addservices'>Add Service</Link></li>
+    <li className='font-semibold'><Link to='/blogs'>Blogs</Link></li>
         {
             user?.uid?
                 <>
@@ -32,11 +34,14 @@ const Header = () => {
                     <li className='font-semibold'>
                         <button onClick={handleLogOut} className='btn-ghost'>Sign Out</button>
                     </li>
+                    <li ><Link to='/'> <img className='w-10 mx-auto border-2 border-red-800 rounded-full' src={user.photoURL} alt="" /> </Link></li>
                 </>
                 :
                 <>
+                
                 <li className='font-semibold'><Link to='/login'>Login</Link></li>
                 <li className='font-semibold'><Link to='/signup'>Sign Up</Link></li>
+                <li className='text-2xl'><Link to='/signup'><FaRegUserCircle></FaRegUserCircle></Link></li>
                 </>
 
         }
