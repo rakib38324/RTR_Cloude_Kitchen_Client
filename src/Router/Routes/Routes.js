@@ -10,6 +10,7 @@ import ServicesDetails from '../../Pages/Home/Services/ServicesDetails/ServicesD
 import EditReview from '../../Pages/TotalReview/EditReview/EditReview';
 import MyReview from '../../Pages/TotalReview/MyReview/MyReview';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
+import page from '../errorPage.jpg'
 
 
 
@@ -59,7 +60,10 @@ const router = createBrowserRouter([
             loader: ({params}) => fetch(`http://localhost:5000/review/${params.id}`)
         },
       ]
-    }
+      
+    },
+    {path: '*', element: <div> <img className='w-full p-5' src={page} alt="" /> </div> }
+    
   ]);
 
 export default router;

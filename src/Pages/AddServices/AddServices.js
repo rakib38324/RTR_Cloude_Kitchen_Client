@@ -14,7 +14,7 @@ const AddServices = () => {
 
     const handleAddService = event => {
         event.preventDefault();
-        console.log(service)
+        // console.log(service)
 
         fetch('http://localhost:5000/services/',{
             method: 'POST',
@@ -25,8 +25,9 @@ const AddServices = () => {
         })
         .then(res => res.json())
         .then(data => {
-            if(data.acknowledge){
+            if(data.acknowledged){
                 toast.success("Service Add Successfully")
+                event.target.reset();
                 event.target.reset();
                 navigate(from, { replace: true });
             }

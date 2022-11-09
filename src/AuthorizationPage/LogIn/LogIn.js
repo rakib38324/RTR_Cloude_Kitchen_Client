@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { FaGoogle } from 'react-icons/fa';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthContextProvider';
 import toast from 'react-hot-toast';
 
@@ -10,10 +10,12 @@ const LogIn = () => {
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
     
-    const { login, signUpWitGoogle } = useContext(AuthContext);
+    const { login, signUpWitGoogle,user } = useContext(AuthContext);
 
 
     const handleLogIn = (event) =>{
+
+        
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
@@ -57,6 +59,10 @@ const LogIn = () => {
 
     }
 
+    if(user?.uid){
+        return <Navigate to={from}></Navigate>
+    }
+    
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row-reverse">
