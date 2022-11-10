@@ -69,7 +69,7 @@ const Signup = () => {
 
 
 
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://rtr-cloud-kitchen-server.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -103,7 +103,7 @@ const Signup = () => {
 
 
 
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://rtr-cloud-kitchen-server.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

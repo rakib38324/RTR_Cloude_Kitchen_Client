@@ -22,7 +22,7 @@ const ServicesDetails = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/allreview?serviceId=${_id}`)
+        fetch(`https://rtr-cloud-kitchen-server.vercel.app/allreview?serviceId=${_id}`)
             .then(res => res.json())
             .then(data => setReviews(data));
     }, [_id])

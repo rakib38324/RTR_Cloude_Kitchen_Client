@@ -42,7 +42,7 @@ const LogIn = () => {
 
 
 
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://rtr-cloud-kitchen-server.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -77,7 +77,7 @@ const LogIn = () => {
                 const currentUser = { email: user.email }
 
 
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://rtr-cloud-kitchen-server.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

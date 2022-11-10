@@ -37,7 +37,7 @@ const router = createBrowserRouter([
         {
             path:'/services/:id',
             element: <ServicesDetails></ServicesDetails>,
-            loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
+            loader: ({params}) => fetch(`https://rtr-cloud-kitchen-server.vercel.app/services/${params.id}`)
         },
         {
             path:'/services',
@@ -54,12 +54,12 @@ const router = createBrowserRouter([
         {
             path: '/review/:id',
             element: <PrivateRoute><Review></Review></PrivateRoute>,
-            loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
+            loader: ({params}) => fetch(`https://rtr-cloud-kitchen-server.vercel.app/services/${params.id}`)
         },
         {
             path: '/editreview/:id',
             element: <PrivateRoute><EditReview></EditReview></PrivateRoute>,
-            loader: ({params}) => fetch(`http://localhost:5000/review/${params.id}`)
+            loader: ({params}) => fetch(`https://rtr-cloud-kitchen-server.vercel.app/review/${params.id}`)
         },
         {
             path: '/blogs',

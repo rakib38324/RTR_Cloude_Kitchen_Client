@@ -18,7 +18,7 @@ const AddServices = () => {
         event.preventDefault();
         // console.log(service)
 
-        fetch('http://localhost:5000/services/',{
+        fetch('https://rtr-cloud-kitchen-server.vercel.app/services/',{
             method: 'POST',
             headers:{
                 'content-type': 'application/json'

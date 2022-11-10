@@ -16,7 +16,7 @@ const MyReview = () => {
 
     console.log(email)
     useEffect(() => {
-        fetch(`http://localhost:5000/review?email=${user?.email}`,{
+        fetch(`https://rtr-cloud-kitchen-server.vercel.app/review?email=${user?.email}`,{
             headers:{
                 authorization: `Bearer ${localStorage.getItem('rtr-cloud-kitchen-token')}`
             }
@@ -29,7 +29,7 @@ const MyReview = () => {
         const proceed = window.confirm("Are you sure want to delete the review");
 
         if (proceed) {
-            fetch(`http://localhost:5000/review/${id}`, {
+            fetch(`https://rtr-cloud-kitchen-server.vercel.app/review/${id}`, {
                 method: 'DELETE',
                 headers:{
                     authorization: `Bearer ${localStorage.getItem('rtr-cloud-kitchen-token')}`

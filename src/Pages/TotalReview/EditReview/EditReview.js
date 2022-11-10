@@ -31,7 +31,7 @@ const EditReview = () => {
         const id= form.id.value;
         console.log(id,review)
        
-        fetch(`http://localhost:5000/review/${id}`,{
+        fetch(`https://rtr-cloud-kitchen-server.vercel.app/review/${id}`,{
             method: 'PATCH',
             headers:{
                 'content-type': 'application/json',
