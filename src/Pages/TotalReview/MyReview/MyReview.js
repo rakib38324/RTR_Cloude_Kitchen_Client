@@ -30,7 +30,10 @@ const MyReview = () => {
 
         if (proceed) {
             fetch(`http://localhost:5000/review/${id}`, {
-                method: 'DELETE'
+                method: 'DELETE',
+                headers:{
+                    authorization: `Bearer ${localStorage.getItem('rtr-cloud-kitchen-token')}`
+                }
             })
                 .then(res => res.json())
                 .then(data => {

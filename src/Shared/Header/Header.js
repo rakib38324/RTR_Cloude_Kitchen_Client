@@ -34,7 +34,7 @@ const Header = () => {
                     <li className='font-semibold'>
                         <button onClick={handleLogOut} className='btn-ghost'>Sign Out</button>
                     </li>
-                    <li ><Link to='/'> <img className='w-10 mx-auto border-2 border-red-800 rounded-full' src={user.photoURL} alt="" /> </Link></li>
+                    <li ><Link to='/'> <img className='w-10 mx-auto border-2 border-red-500 rounded-full' src={user.photoURL} alt="" /> </Link></li>
                 </>
                 :
                 <>

@@ -22,7 +22,7 @@ const EditReview = () => {
     const location = useLocation();
     const from = location.state?.from?.pathname || '/'
 
-
+    console.log(from)
     const handleUpdateReview = event => {
         event.preventDefault();
         
@@ -34,7 +34,8 @@ const EditReview = () => {
         fetch(`http://localhost:5000/review/${id}`,{
             method: 'PATCH',
             headers:{
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('rtr-cloud-kitchen-token')}`
             },
             body:JSON.stringify({review})
         })

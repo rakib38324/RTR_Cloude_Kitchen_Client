@@ -1,4 +1,4 @@
-import { createBrowserRouter} from 'react-router-dom';
+import { createBrowserRouter, Link} from 'react-router-dom';
 import LogIn from '../../AuthorizationPage/LogIn/LogIn';
 import Review from '../../AuthorizationPage/Signup/Review';
 import Signup from '../../AuthorizationPage/Signup/Signup';
@@ -12,6 +12,7 @@ import MyReview from '../../Pages/TotalReview/MyReview/MyReview';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import page from '../errorPage.jpg'
 import Blogs from '../../Pages/Home/Blogs/Blogs';
+import { FaArrowLeft } from 'react-icons/fa';
 
 
 
@@ -68,7 +69,12 @@ const router = createBrowserRouter([
       ]
       
     },
-    {path: '*', element: <div> <img className='w-full p-5' src={page} alt="" /> </div> }
+    {path: '*', element: 
+    <div className='max-w-screen-xl mx-auto'>
+        <Link to='/'><button className='btn my-10'> <FaArrowLeft></FaArrowLeft><span className='pl-5'> Go Back Home</span></button></Link>
+         <img className='w-full' src={page} alt="" />
+         
+     </div> }
     
   ]);
 

@@ -22,11 +22,7 @@ const ServicesDetails = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/review?serviceId=${_id}`,{
-            headers:{
-                authorization: `Bearer ${localStorage.getItem('rtr-cloud-kitchen-token')}`
-            }
-        })
+        fetch(`http://localhost:5000/allreview?serviceId=${_id}`)
             .then(res => res.json())
             .then(data => setReviews(data));
     }, [_id])

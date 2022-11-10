@@ -28,6 +28,7 @@ const AuthContextProvider = ({ children }) => {
     }
 
     const logOut = () => {
+        localStorage.removeItem('rtr-cloud-kitchen-token')
         return signOut(auth)
     }
 

@@ -20,7 +20,7 @@ const ServiceCard = ({ service }) => {
                     
                     <p className='text-2xl pb-3 text-red-600 font-semibold'>Price: ${price}</p>
                     <p className='text-xl pb-3 text-red-600 font-semibold'>Rating: {ratting}</p>
-                    <p className='pb-5'>{description.slice(0, 100).concat("...")}</p>
+                    <p className='pb-5'>{description.slice(0, 100)}{description.length > 100 ? "..." : ""}</p>
                     
                     
                     <Link to={`/services/${_id}`}>

@@ -1,10 +1,12 @@
 import React from 'react';
+import useTitle from '../../../Hooks/UseTitle';
 import sql from './blogsImage/DB_SQL.jpg'
 import jwt from './blogsImage/jwt.png'
 import nvj from './blogsImage/nJS.jpg'
 import nj from './blogsImage/node-js.png'
 
 const Blogs = () => {
+    useTitle('Blog');
     return (
         <div className='grid lg:grid-cols-3 sm:grid-cols-1 gap-5 p-4 my-10'>
 
